@@ -1,0 +1,214 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <!-- <h1>Advanced Form</h1> -->
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Add Entity</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <!-- <div class="card-header">
+                  <h3 class="card-title">Quick Example</h3>
+                </div> -->
+                <form [formGroup]="entityForm" #myform="ngForm" role="form" (ngSubmit)="onSubmit()" method="post">
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter Name">
+                            <span *ngIf="entityForm.get('name').invalid && myform.submitted || entityForm.get('name').touched && entityForm.get('name').invalid ">
+                              <span class="text-danger"  *ngIf="entityForm.get('name').pristine">Name is required</span>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" formControlName="email"  id="email" placeholder="Enter Email">
+                                <span *ngIf="entityForm.get('email').invalid && myform.submitted || entityForm.get('email').touched && entityForm.get('email').invalid ">
+                                  <span class="text-danger"  *ngIf="entityForm.get('email').pristine">Email is required</span>
+                                  <span class="text-danger" *ngIf="entityForm.controls['email'].errors?.validateEmail">Please enter valid email</span>
+                                </span>
+                            </div>
+                        </div>  
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="mobile">Mobile</label>
+                          <input type="text" formControlName="mobile" class="form-control" id="mobile" placeholder="Enter Mobile">
+                          <span *ngIf="entityForm.get('mobile').invalid && myform.submitted || entityForm.get('mobile').touched && entityForm.get('mobile').invalid ">
+                            <span class="text-danger"  *ngIf="entityForm.get('mobile').pristine">Mobile is required</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" formControlName="address" class="form-control" id="address" placeholder="Enter Address">
+                            <span *ngIf="entityForm.get('address').invalid && myform.submitted || entityForm.get('address').touched && entityForm.get('address').invalid ">
+                              <span class="text-danger"  *ngIf="entityForm.get('address').pristine">Address is required</span>
+                            </span>
+                        </div>
+                      </div>  
+                  </div>
+
+                    <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password"  formControlName="password"  class="form-control" placeholder="Password">
+                          <span *ngIf="entityForm.get('password').invalid && myform.submitted || entityForm.get('password').touched && entityForm.get('password').invalid">
+                            <span class="text-danger"  *ngIf="entityForm.get('password').pristine"  >Password is required</span>
+                        </span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="package_id">Package</label>
+                   
+                          <select class="form-control" [attr.disabled] = "id !== null ? 'disabled' : null" formControlName="package_id" >
+                            <option value="" disabled selected>Select your option</option>
+                            <option  *ngFor="let data of package; let i = index" value="{{data.id}}">{{data.name}}</option>
+                          </select>
+                          <span *ngIf="entityForm.get('package_id').invalid && myform.submitted || entityForm.get('package_id').touched && entityForm.get('package_id').invalid ">
+                            <span class="text-danger"  *ngIf="entityForm.get('package_id').pristine">Package is required</span>
+                          </span>
+                      </div>
+                      </div>  
+                  </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="notification">Notification</label>
+                                <select class="form-control" formControlName="notification">
+                                  <option value="" disabled selected>Select your option</option>
+                                  <option value="0">OFF</option>
+                                  <option value="1">ON</option>
+                                </select>
+                           <span *ngIf="entityForm.get('notification').invalid && myform.submitted || entityForm.get('notification').touched && entityForm.get('notification').invalid ">
+                            <span class="text-danger"  *ngIf="entityForm.get('notification').pristine">Notification is required</span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="agreement">Agreement</label>
+                              <div class="input-group">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" (change)="uploadImages($event)"  id="exampleInputFile">
+                                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                               
+                              </div>
+                          <span *ngIf="entityForm.get('agreement').invalid && myform.submitted || entityForm.get('agreement').touched && entityForm.get('agreement').invalid ">
+                            <span class="text-danger"  *ngIf="entityForm.get('agreement').pristine">Agreement is required</span>
+                          </span>
+                        </div>
+                      </div> 
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="trial_date">Trial Date</label>
+                           <input type="date" class="form-control" formControlName="trial_date">
+                         <span *ngIf="entityForm.get('trial_date').invalid && myform.submitted || entityForm.get('trial_date').touched && entityForm.get('trial_date').invalid ">
+                          <span class="text-danger"  *ngIf="entityForm.get('trial_date').pristine">Trial Date is required</span>
+                        </span>
+                      </div>
+                    </div>
+                    
+                </div>
+
+                      <!-- <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="guard">Guard</label>
+
+
+                           <div >
+                            <ng-select2 formControlName="guard"
+                             highlightColor="#9575cd"
+                             [options]="options"
+                             [data]="guard"
+                             width="508"
+                             [placeholder]="'Please select a Guard...'"
+                         
+                             >
+                        </ng-select2>
+                           </div>
+                        
+                            <span *ngIf="entityForm.get('guard').invalid && myform.submitted || entityForm.get('guard').touched && entityForm.get('guard').invalid ">
+                              <span class="text-danger"  *ngIf="entityForm.get('guard').pristine">Guard is required</span>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="employee">Employee</label>
+
+                            <div >
+                              <ng-select2 formControlName="employee"
+                               highlightColor="#9575cd"
+                               [options]="options"
+                               [data]="employee"
+                               width="508"
+                               [placeholder]="'Please select a Employee...'"
+                             
+                               >
+                          </ng-select2>
+                             </div>
+                        
+                            <span *ngIf="entityForm.get('employee').invalid && myform.submitted || entityForm.get('employee').touched && entityForm.get('employee').invalid ">
+                              <span class="text-danger"  *ngIf="entityForm.get('employee').pristine">Employee is required</span>
+                            </span>
+                          </div>
+                        </div> 
+                    </div> -->
+                  </div>
+                    <!-- /.card-body -->
+    
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+</div>
+
+<app-footer></app-footer>
+

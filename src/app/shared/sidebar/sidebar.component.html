@@ -1,0 +1,83 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="assets/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Visitor Management</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="assets/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{name}}</a>
+        </div>
+      </div> -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        
+            <li *ngIf="user_type==0" class="nav-item">
+                <a href="javascript:void(0);" routerLink="/dashboard" class="nav-link">
+                  <i class="nav-icon fa fa-tachometer-alt text-info"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+
+              <li *ngIf="user_type==0" class="nav-item">
+                <a  href="javascript:void(0);" class="nav-link" routerLink="/package">
+                  <i class="nav-icon fa fa-file text-info"></i>
+                  <p>Packages</p>
+                </a>
+              </li>
+
+              <li *ngIf="user_type==0" class="nav-item">
+                <a  href="javascript:void(0);" class="nav-link" routerLink="/entity">
+                  <i class="nav-icon fa fa-building text-info"></i>
+                  <p>Entity</p>
+                </a>
+              </li>
+              <li *ngIf="user_type==1" class="nav-item">
+                <a  href="javascript:void(0);" class="nav-link" routerLink="/package/current-package">
+                  <i class="nav-icon fa fa-file text-info"></i>
+                  <p>Package</p>
+                </a>
+              </li>
+              <li *ngIf="user_type==1" class="nav-item">
+                <a  href="javascript:void(0);" class="nav-link" [ngClass]="package_disability?'disabled':''" routerLink="/employee">
+                  <i class="nav-icon fa fa-user text-info"></i>
+                  <p>Employee</p>
+                </a>
+              </li>
+
+              <li *ngIf="user_type==1"  class="nav-item">
+                <a  href="javascript:void(0);" [ngClass]="package_disability?'disabled':''" class="nav-link" routerLink="/guard">
+                  <i class="nav-icon fa fa-user text-info"></i>
+                  <p>Guard</p>
+                </a>
+              </li>
+            
+              <li *ngIf="user_type==1" class="nav-item">
+                <a  href="javascript:void(0);" [ngClass]="package_disability || employee_disability || guard_disability ?'disabled':''" class="nav-link" routerLink="/visitor">
+                  <i class="nav-icon fa fa-user text-info"></i>
+                  <p>Visitor</p>
+                </a>
+              </li>
+        
+        
+        
+        
+        
+        
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+

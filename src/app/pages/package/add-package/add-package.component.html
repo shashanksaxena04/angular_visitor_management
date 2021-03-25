@@ -1,0 +1,97 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <!-- <h1>Advanced Form</h1> -->
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Add Package</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+
+
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <!-- <div class="card-header">
+                  <h3 class="card-title">Quick Example</h3>
+                </div> -->
+                <form [formGroup]="packageForm" #myform="ngForm" role="form" (ngSubmit)="onSubmit()" method="post">
+                    <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter Name">
+                                <span *ngIf="packageForm.get('name').invalid && myform.submitted || packageForm.get('name').touched && packageForm.get('name').invalid ">
+                                  <span class="text-danger"  *ngIf="packageForm.get('name').pristine">Name is required</span>
+                                </span>
+                              </div>
+                             
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" formControlName="amount" class="form-control" id="amount" placeholder="Enter Amount">
+                            <span *ngIf="packageForm.get('amount').invalid && myform.submitted || packageForm.get('amount').touched && packageForm.get('amount').invalid ">
+                              <span class="text-danger"  *ngIf="packageForm.get('amount').pristine">Amount is required</span>
+                            </span>
+                          </div>
+                        </div>  
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label for="duration">Duration</label>
+                              <select class="form-control" formControlName="duration">
+                                <option value="0">Monthly</option>
+                                <option value="1">Quartely</option>
+                                <option value="2">Six Monthly</option>
+                                <option value="3">Annually</option>
+                              </select>
+                              <span *ngIf="packageForm.get('duration').invalid && myform.submitted || packageForm.get('duration').touched && packageForm.get('duration').invalid ">
+                                <span class="text-danger"  *ngIf="packageForm.get('duration').pristine">Duration is required</span>
+                              </span>
+                            </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                       
+                        </div>
+                      </div>  
+                  </div>
+                       
+              
+                    </div>
+                    <!-- /.card-body -->
+    
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+</div>
+
+<app-footer></app-footer>

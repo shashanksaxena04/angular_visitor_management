@@ -1,0 +1,100 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <!-- <h1>Simple Tables</h1> -->
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">package list</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <section class="content">
+        <div class="container-fluid">
+                   <!-- /.row -->
+        <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <!-- <h3 class="card-title">Responsive Hover Table</h3> -->
+  
+                  <div class="card-tools">
+                  <div class="row">
+                    <div class="col-md-8">
+                      
+                      <input type="text"  [(ngModel)]="searc" (ngModelChange)="Search()" class="form-control float-right" placeholder="Search by Name" />
+                  
+                    </div>
+                    <div class="col-md-4">
+                      <a routerLink="add-package" class="btn btn-primary" >Add</a>
+                    </div>
+                  </div>
+                   
+                   
+                  </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Duration</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of packageData |  paginate: { itemsPerPage: count, currentPage: page, totalItems: totalcount }; let i = index">
+                        <td>{{data.id}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.amount}}</td>
+                        <td>
+                         <span *ngIf="data.duration == 0">Monthly</span> 
+                         <span *ngIf="data.duration == 1">Quartely</span> 
+                         <span *ngIf="data.duration == 2">Six Monthly</span> 
+                         <span *ngIf="data.duration == 3">Annually</span> 
+                        </td>
+                        <td>
+                           <span>
+                            <a class="btn btn-outline-primary btn-sm"  [routerLink]="['edit-package',data.id]" >
+                              <span class="fa fa-pencil-alt"></span>
+                              </a>
+                            </span>
+                           <span > <a href="javascript:void(0)" class="btn btn-outline-primary btn-sm ml-2" (click)="delete(data)"  >
+                            <span class="fa fa-trash"></span>
+                            </a></span>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer relator-pagination">
+                  <pagination-controls class="my-pagination"  (pageChange)="getpackageData($event)"></pagination-controls> 
+                </div>
+              </div>
+              <!-- /.card -->
+            </div>
+           
+   
+          </div>
+          <!-- /.row -->
+    
+        </div>
+      </section>
+
+</div>
+
+
+<app-footer></app-footer>

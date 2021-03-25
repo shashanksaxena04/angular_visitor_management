@@ -1,0 +1,41 @@
+.relator-pagination {
+	text-align: right;
+}
+.relator-pagination ul {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+.relator-pagination ul li {
+	list-style: none;
+	display: inline-block;
+}
+.relator-pagination ul li a {
+	color: #152C5B;
+	font-weight: bold;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 22px;
+	padding: 0px 8px;
+	display: inline-block;
+    height: 28px;
+	width: 28px;
+	line-height: 28px;
+}
+.relator-pagination ul li.active a {
+	/* background: #2849DE; */
+	background: linear-gradient(90.99deg, #026BFE 8.06%, #012ABE 99.73%);
+	border-radius: 50%;
+	color: #fff;
+}
+.relator-pagination ul li:nth-child(1) a {
+	padding-right: 28px;
+	font-weight: bold;
+	width: auto;
+}
+.relator-pagination ul li:last-child a {
+	padding-left: 28px;
+	font-weight: bold;
+	width: auto;
+	width: auto;
+}

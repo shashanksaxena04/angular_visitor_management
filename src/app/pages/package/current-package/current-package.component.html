@@ -1,0 +1,108 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="content-wrapper">
+  <section class="content-header mb-4">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12 text-center mt-4">
+            <h4 *ngIf="expired" ><b>Your Package has Expired</b></h4>
+          </div>
+          <!-- <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+              <li class="breadcrumb-item active">Current Package</li>
+            </ol>
+          </div> -->
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+                 <!-- /.row -->
+      <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <!-- <h3 class="card-title"  *ngIf="expired" ><b>Your Package has been Expired</b></h3> -->
+                
+                
+                <div class="card-tools">
+                <div class="row">
+                  <div class="col-md-12">
+             
+                  </div>
+
+                  <div class="col-md-4">
+                 
+                  </div>
+                </div>
+                 
+                 
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Amount</th>
+                      <th>Duration</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Status</th>
+                      <th>Purchase</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of packageData, let i = index" [ngClass]="{'selected': currentPackage.package_id == data.id}" > 
+                      <td>{{data.id}}</td>
+                      <td>{{data.name}}</td>
+                      <td>{{data.amount}}</td>
+                      <td>
+                        <span *ngIf="data.duration == 0">Monthly</span> 
+                        <span *ngIf="data.duration == 1">Quartely</span> 
+                        <span *ngIf="data.duration == 2">Six Monthly</span> 
+                        <span *ngIf="data.duration == 3">Annually</span> 
+                       </td>
+                      <td>
+                        <span *ngIf="currentPackage.package_id == data.id">{{currentPackage.start_date| date:'fullDate' }}</span>
+                        <span *ngIf="currentPackage.package_id !== data.id">-</span>
+                      </td>
+                      <td  >
+                        <span *ngIf="currentPackage.package_id == data.id">{{currentPackage.end_date | date:'fullDate'}}</span>
+                        <span *ngIf="currentPackage.package_id !== data.id">-</span>
+                      </td>
+                     
+              
+                      <td>
+                        <span  *ngIf="(currentPackage.package_id == data.id && currentPackage.status == 0)"><b>Selected</b>(INACTIVE)</span>
+                        <span  *ngIf="(currentPackage.package_id == data.id && currentPackage.status == 1)"><b>Selected</b>(ACTIVE)</span>
+                        <span  *ngIf="(currentPackage.package_id == data.id && currentPackage.status == 2)"><b>Selected</b>(TRIAL)</span>
+                        <!-- <span  *ngIf="currentPackage.package_id == data.id" ><b>Selected</b></span>
+                        <span  *ngIf="currentPackage.package_id !== data.id"  >Not Selected</span> -->
+                       
+                      </td>
+                      <td (click)="buy_package(data)"><span  class="btn btn-primary btn-sm">buy</span></td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+          
+            </div>
+            <!-- /.card -->
+          </div>
+         
+ 
+        </div>
+        <!-- /.row -->
+  
+      </div>
+    </section>
+
+</div>
+<app-footer></app-footer>
